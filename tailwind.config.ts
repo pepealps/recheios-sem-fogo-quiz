@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,7 +62,11 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
-				}
+				},
+				// Custom colors for the landing page
+				'hot-pink': '#FF1493',
+				'neon-green': '#00FF7F',
+				'soft-pink': '#FFB6C1',
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -84,11 +89,44 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'bounce-money': {
+					'0%, 100%': {
+						transform: 'translateY(0) scale(1)',
+					},
+					'50%': {
+						transform: 'translateY(-10px) scale(1.1)',
+					}
+				},
+				'slide-up': {
+					'0%': {
+						transform: 'translateY(20px)',
+						opacity: '0'
+					},
+					'100%': {
+						transform: 'translateY(0)',
+						opacity: '1'
+					}
+				},
+				'pulse-pink': {
+					'0%, 100%': {
+						boxShadow: '0 0 0 0 rgba(255, 20, 147, 0.7)'
+					},
+					'70%': {
+						boxShadow: '0 0 0 10px rgba(255, 20, 147, 0)'
+					}
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'bounce-money': 'bounce-money 0.6s ease-in-out',
+				'slide-up': 'slide-up 0.5s ease-out',
+				'pulse-pink': 'pulse-pink 2s infinite'
+			},
+			fontFamily: {
+				'cursive': ['Pacifico', 'cursive'],
+				'rounded': ['Nunito', 'sans-serif'],
 			}
 		}
 	},
