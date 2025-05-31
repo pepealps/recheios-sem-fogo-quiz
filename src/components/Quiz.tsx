@@ -75,12 +75,12 @@ const Quiz = ({ onAnswer, onComplete }: QuizProps) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [isAnswering, setIsAnswering] = useState(false);
 
-  const playCashRegisterSound = () => {
-    // Create audio context for cash register sound
+  const playMoneyFallingSound = () => {
+    // Create audio context for money falling sound
     const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
     
-    // Create a simple cash register "cha-ching" sound
-    const createBeep = (frequency: number, duration: number, delay: number = 0) => {
+    // Create a money falling "ka-ching" sound with multiple coins
+    const createCoinSound = (frequency: number, duration: number, delay: number = 0) => {
       setTimeout(() => {
         const oscillator = audioContext.createOscillator();
         const gainNode = audioContext.createGain();
@@ -89,9 +89,9 @@ const Quiz = ({ onAnswer, onComplete }: QuizProps) => {
         gainNode.connect(audioContext.destination);
         
         oscillator.frequency.value = frequency;
-        oscillator.type = 'sine';
+        oscillator.type = 'triangle';
         
-        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+        gainNode.gain.setValueAtTime(0.2, audioContext.currentTime);
         gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
         
         oscillator.start(audioContext.currentTime);
@@ -99,10 +99,13 @@ const Quiz = ({ onAnswer, onComplete }: QuizProps) => {
       }, delay);
     };
 
-    // Create the "cha-ching" effect with multiple tones
-    createBeep(800, 0.1, 0);
-    createBeep(1000, 0.1, 50);
-    createBeep(1200, 0.2, 100);
+    // Create the money falling effect with multiple coin sounds
+    createCoinSound(800, 0.15, 0);
+    createCoinSound(900, 0.12, 80);
+    createCoinSound(700, 0.18, 150);
+    createCoinSound(1000, 0.1, 200);
+    createCoinSound(850, 0.14, 280);
+    createCoinSound(950, 0.12, 350);
   };
 
   const handleAnswer = (optionIndex: number) => {
@@ -110,8 +113,8 @@ const Quiz = ({ onAnswer, onComplete }: QuizProps) => {
     
     setIsAnswering(true);
     
-    // Play cash register sound
-    playCashRegisterSound();
+    // Play money falling sound
+    playMoneyFallingSound();
     
     onAnswer();
 
@@ -135,7 +138,7 @@ const Quiz = ({ onAnswer, onComplete }: QuizProps) => {
             Pergunta {currentQuestion + 1} de {questions.length}
           </span>
           <span className="text-hot-pink font-bold">
-            💰 Acumulando desconto...
+            🧁 Acumulando desconto...
           </span>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-3">
