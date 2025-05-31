@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -240,11 +239,10 @@ const Index = () => {
             <CountdownTimer />
 
             <div className="mt-12">
-              <TestimonialCard 
-                name="Carla Mendes"
-                photo="/placeholder-success.jpg"
-                testimonial="Melhor investimento que fiz! Não consigo mais viver sem essas receitas práticas."
-                result="5 estrelas ⭐⭐⭐⭐⭐"
+              <img 
+                src="https://i.imgur.com/3NxGui4.png" 
+                alt="Depoimento da Carla Mendes"
+                className="w-full max-w-2xl mx-auto rounded-lg shadow-lg"
               />
             </div>
 
