@@ -75,14 +75,45 @@ const Quiz = ({ onAnswer, onComplete }: QuizProps) => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [isAnswering, setIsAnswering] = useState(false);
 
+  const playCashRegisterSound = () => {
+    // Create audio context for cash register sound
+    const audioContext = new (window.AudioContext || (window as any).webkitAudioContext)();
+    
+    // Create a simple cash register "cha-ching" sound
+    const createBeep = (frequency: number, duration: number, delay: number = 0) => {
+      setTimeout(() => {
+        const oscillator = audioContext.createOscillator();
+        const gainNode = audioContext.createGain();
+        
+        oscillator.connect(gainNode);
+        gainNode.connect(audioContext.destination);
+        
+        oscillator.frequency.value = frequency;
+        oscillator.type = 'sine';
+        
+        gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+        gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+        
+        oscillator.start(audioContext.currentTime);
+        oscillator.stop(audioContext.currentTime + duration);
+      }, delay);
+    };
+
+    // Create the "cha-ching" effect with multiple tones
+    createBeep(800, 0.1, 0);
+    createBeep(1000, 0.1, 50);
+    createBeep(1200, 0.2, 100);
+  };
+
   const handleAnswer = (optionIndex: number) => {
     if (isAnswering) return;
     
     setIsAnswering(true);
+    
+    // Play cash register sound
+    playCashRegisterSound();
+    
     onAnswer();
-
-    // Play cash register sound (placeholder for now)
-    console.log('🔊 Cash register sound!');
 
     setTimeout(() => {
       if (currentQuestion < questions.length - 1) {
@@ -104,7 +135,7 @@ const Quiz = ({ onAnswer, onComplete }: QuizProps) => {
             Pergunta {currentQuestion + 1} de {questions.length}
           </span>
           <span className="text-hot-pink font-bold">
-            +R$ 12,85 por resposta!
+            💰 Acumulando desconto...
           </span>
         </div>
         <div className="w-full bg-gray-200 rounded-full h-3">
