@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -12,7 +11,6 @@ declare global {
     utmify: (event: string) => void;
   }
 }
-
 const Index = () => {
   const [currentSection, setCurrentSection] = useState<'intro' | 'quiz' | 'offer'>('intro');
   const [balance, setBalance] = useState(0);
@@ -24,23 +22,25 @@ const Index = () => {
       window.utmify('pageview');
     }
   }, []);
-
   const addToBalance = () => {
     setIsAnimating(true);
     setBalance(prev => prev + 12.85);
     setTimeout(() => setIsAnimating(false), 800);
   };
-
   const startQuiz = () => {
     setCurrentSection('quiz');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
-
   const completeQuiz = () => {
     setCurrentSection('offer');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
   };
-
   const handlePurchase = () => {
     // Track initiatecheckout event
     if (typeof window.utmify === 'function') {
@@ -48,13 +48,10 @@ const Index = () => {
     }
     window.open('https://www.ggcheckout.com/checkout/v2/d69NaLrbZoJDFs3GeUCX', '_blank');
   };
-
-  return (
-    <div className="min-h-screen bg-white font-rounded">
+  return <div className="min-h-screen bg-white font-rounded">
       <BalanceCounter balance={balance} isAnimating={isAnimating} />
       
-      {currentSection === 'intro' && (
-        <>
+      {currentSection === 'intro' && <>
           {/* Hero Section */}
           <section className="relative py-8 md:py-20 px-3 md:px-4 text-center">
             <div className="max-w-4xl mx-auto">
@@ -118,19 +115,14 @@ const Index = () => {
                 </div>
               </Card>
               
-              <Button 
-                onClick={startQuiz}
-                className="bg-neon-green hover:bg-green-500 text-black font-bold text-base md:text-lg lg:text-xl px-6 md:px-8 lg:px-12 py-3 md:py-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 animate-pulse-pink w-full md:w-auto max-w-sm md:max-w-none mx-auto"
-              >
+              <Button onClick={startQuiz} className="bg-neon-green hover:bg-green-500 text-black font-bold text-base md:text-lg lg:text-xl px-6 md:px-8 lg:px-12 py-3 md:py-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 animate-pulse-pink w-full md:w-auto max-w-sm md:max-w-none mx-auto">
                 🧁 COMEÇAR PERGUNTAS AGORA!
               </Button>
             </div>
           </section>
-        </>
-      )}
+        </>}
 
-      {currentSection === 'quiz' && (
-        <section className="py-8 md:py-20 px-3 md:px-4">
+      {currentSection === 'quiz' && <section className="py-8 md:py-20 px-3 md:px-4">
           <div className="text-center mb-8 md:mb-12">
             <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 mb-3 md:mb-4 px-2">
               🧁 Perguntas dos Recheios Sem Fogo
@@ -140,11 +132,9 @@ const Index = () => {
             </p>
           </div>
           <Quiz onAnswer={addToBalance} onComplete={completeQuiz} />
-        </section>
-      )}
+        </section>}
 
-      {currentSection === 'offer' && (
-        <section className="py-8 md:py-20 px-3 md:px-4">
+      {currentSection === 'offer' && <section className="py-8 md:py-20 px-3 md:px-4">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-800 mb-4 md:mb-6 px-2">
               🎉 PARABÉNS!
@@ -165,47 +155,23 @@ const Index = () => {
               </div>
             </Card>
 
-            <Button 
-              onClick={handlePurchase}
-              className="bg-neon-green hover:bg-green-500 text-black font-bold text-xs md:text-sm lg:text-base px-4 md:px-6 lg:px-8 py-2 md:py-3 lg:py-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 animate-pulse-pink mb-6 md:mb-8 w-full md:w-auto max-w-xs md:max-w-sm mx-auto block text-center leading-tight"
-            >
-              🔓 QUERO DESBLOQUEAR AGORA MEUS RECHEIOS SEM FOGO
-            </Button>
+            <Button onClick={handlePurchase} className="bg-neon-green hover:bg-green-500 text-black font-bold text-xs md:text-sm lg:text-base px-4 md:px-6 lg:px-8 py-2 md:py-3 lg:py-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 animate-pulse-pink mb-6 md:mb-8 w-full md:w-auto max-w-xs md:max-w-sm mx-auto block text-center leading-tight">🔓 GARANTIR DESCONTO</Button>
 
             <CountdownTimer />
 
             <div className="mt-8 md:mt-12">
-              <img 
-                src="https://i.imgur.com/3NxGui4.png" 
-                alt="Depoimento da Carla Mendes"
-                className="w-full max-w-2xl mx-auto rounded-lg shadow-lg mb-6 md:mb-8"
-              />
+              <img src="https://i.imgur.com/3NxGui4.png" alt="Depoimento da Carla Mendes" className="w-full max-w-2xl mx-auto rounded-lg shadow-lg mb-6 md:mb-8" />
             </div>
 
             <div className="mt-6 md:mt-8 bg-gray-800 rounded-lg overflow-hidden shadow-lg mb-6 md:mb-8">
-              <iframe
-                width="100%"
-                height="250"
-                src="https://www.youtube.com/embed/xVJ3unlES_c"
-                title="Depoimento Final da Aluna"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full md:h-400"
-              ></iframe>
+              <iframe width="100%" height="250" src="https://www.youtube.com/embed/xVJ3unlES_c" title="Depoimento Final da Aluna" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen className="w-full md:h-400"></iframe>
             </div>
 
-            <Button 
-              onClick={handlePurchase}
-              className="bg-neon-green hover:bg-green-500 text-black font-bold text-xs md:text-sm lg:text-base px-4 md:px-6 lg:px-8 py-2 md:py-3 lg:py-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 animate-pulse-pink w-full md:w-auto max-w-xs md:max-w-sm mx-auto leading-tight"
-            >
+            <Button onClick={handlePurchase} className="bg-neon-green hover:bg-green-500 text-black font-bold text-xs md:text-sm lg:text-base px-4 md:px-6 lg:px-8 py-2 md:py-3 lg:py-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 animate-pulse-pink w-full md:w-auto max-w-xs md:max-w-sm mx-auto leading-tight">
               🧁 GARANTIR MINHA VAGA AGORA
             </Button>
           </div>
-        </section>
-      )}
-    </div>
-  );
+        </section>}
+    </div>;
 };
-
 export default Index;
