@@ -37,11 +37,11 @@ const BalanceCounter = ({ balance, isAnimating }: BalanceCounterProps) => {
   }, [balance, isAnimating]);
 
   return (
-    <div className="fixed top-4 right-4 z-50">
-      <div className={`bg-gradient-to-r from-hot-pink to-pink-500 text-white px-6 py-3 rounded-full shadow-lg border-2 border-white ${isAnimating ? 'animate-bounce-money animate-pulse-pink' : ''}`}>
+    <div className="fixed top-2 right-2 md:top-4 md:right-4 z-50 max-w-[120px] md:max-w-none">
+      <div className={`bg-gradient-to-r from-hot-pink to-pink-500 text-white px-3 py-2 md:px-6 md:py-3 rounded-full shadow-lg border-2 border-white ${isAnimating ? 'animate-bounce-money animate-pulse-pink' : ''}`}>
         <div className="text-center">
-          <div className="text-xs font-semibold opacity-90">Desconto Acumulado</div>
-          <div className="text-xl font-bold font-rounded">
+          <div className="text-[10px] md:text-xs font-semibold opacity-90">Desconto</div>
+          <div className="text-sm md:text-xl font-bold font-rounded">
             R$ {displayBalance.toFixed(2).replace('.', ',')}
           </div>
         </div>

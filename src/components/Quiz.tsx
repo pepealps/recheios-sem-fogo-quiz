@@ -131,37 +131,37 @@ const Quiz = ({ onAnswer, onComplete }: QuizProps) => {
   const progress = ((currentQuestion + 1) / questions.length) * 100;
 
   return (
-    <div className="max-w-2xl mx-auto px-4">
-      <div className="mb-8">
-        <div className="flex justify-between items-center mb-4">
-          <span className="text-lg font-semibold text-gray-700">
+    <div className="max-w-2xl mx-auto px-3 md:px-4">
+      <div className="mb-6 md:mb-8">
+        <div className="flex justify-between items-center mb-3 md:mb-4">
+          <span className="text-sm md:text-lg font-semibold text-gray-700">
             Pergunta {currentQuestion + 1} de {questions.length}
           </span>
-          <span className="text-hot-pink font-bold">
+          <span className="text-hot-pink font-bold text-sm md:text-base">
             🧁 Acumulando desconto...
           </span>
         </div>
-        <div className="w-full bg-gray-200 rounded-full h-3">
+        <div className="w-full bg-gray-200 rounded-full h-2 md:h-3">
           <div 
-            className="bg-gradient-to-r from-hot-pink to-pink-500 h-3 rounded-full transition-all duration-500"
+            className="bg-gradient-to-r from-hot-pink to-pink-500 h-2 md:h-3 rounded-full transition-all duration-500"
             style={{ width: `${progress}%` }}
           ></div>
         </div>
       </div>
 
-      <Card className="p-8 border-2 border-hot-pink shadow-lg animate-slide-up">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-8 text-center leading-relaxed">
+      <Card className="p-4 md:p-8 border-2 border-hot-pink shadow-lg animate-slide-up">
+        <h2 className="text-lg md:text-2xl lg:text-3xl font-bold text-gray-800 mb-6 md:mb-8 text-center leading-relaxed px-2">
           {questions[currentQuestion].question}
         </h2>
         
-        <div className="space-y-4">
+        <div className="space-y-3 md:space-y-4">
           {questions[currentQuestion].options.map((option, index) => (
             <Button
               key={index}
               onClick={() => handleAnswer(index)}
               disabled={isAnswering}
               variant="outline"
-              className="w-full p-6 text-lg font-semibold border-2 border-hot-pink hover:bg-hot-pink hover:text-white transition-all duration-300 transform hover:scale-105 disabled:opacity-50"
+              className="w-full p-4 md:p-6 text-sm md:text-lg font-semibold border-2 border-hot-pink hover:bg-hot-pink hover:text-white transition-all duration-300 transform hover:scale-105 disabled:opacity-50 h-auto min-h-[3rem] md:min-h-[4rem]"
             >
               {option}
             </Button>
