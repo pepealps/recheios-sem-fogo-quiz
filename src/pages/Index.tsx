@@ -167,7 +167,7 @@ const Index = () => {
 
             <Button 
               onClick={handlePurchase}
-              className="bg-neon-green hover:bg-green-500 text-black font-bold text-sm md:text-lg lg:text-xl px-6 md:px-12 lg:px-16 py-3 md:py-4 lg:py-6 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 animate-pulse-pink mb-6 md:mb-8 w-full md:w-auto max-w-sm md:max-w-none mx-auto block"
+              className="bg-neon-green hover:bg-green-500 text-black font-bold text-xs md:text-sm lg:text-base px-4 md:px-6 lg:px-8 py-2 md:py-3 lg:py-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 animate-pulse-pink mb-6 md:mb-8 w-full md:w-auto max-w-xs md:max-w-sm mx-auto block text-center leading-tight"
             >
               🔓 QUERO DESBLOQUEAR AGORA MEUS RECHEIOS SEM FOGO
             </Button>
@@ -197,7 +197,7 @@ const Index = () => {
 
             <Button 
               onClick={handlePurchase}
-              className="bg-neon-green hover:bg-green-500 text-black font-bold text-sm md:text-lg lg:text-xl px-6 md:px-8 lg:px-12 py-3 md:py-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 animate-pulse-pink w-full md:w-auto max-w-sm md:max-w-none mx-auto"
+              className="bg-neon-green hover:bg-green-500 text-black font-bold text-xs md:text-sm lg:text-base px-4 md:px-6 lg:px-8 py-2 md:py-3 lg:py-4 rounded-full shadow-lg transform hover:scale-105 transition-all duration-300 animate-pulse-pink w-full md:w-auto max-w-xs md:max-w-sm mx-auto leading-tight"
             >
               🧁 GARANTIR MINHA VAGA AGORA
             </Button>
