@@ -1,15 +1,29 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import BalanceCounter from '@/components/BalanceCounter';
 import Quiz from '@/components/Quiz';
 import CountdownTimer from '@/components/CountdownTimer';
 
+// Declare global utmify function
+declare global {
+  interface Window {
+    utmify: (event: string) => void;
+  }
+}
+
 const Index = () => {
   const [currentSection, setCurrentSection] = useState<'intro' | 'quiz' | 'offer'>('intro');
   const [balance, setBalance] = useState(0);
   const [isAnimating, setIsAnimating] = useState(false);
+
+  // Track pageview when component mounts
+  useEffect(() => {
+    if (typeof window.utmify === 'function') {
+      window.utmify('pageview');
+    }
+  }, []);
 
   const addToBalance = () => {
     setIsAnimating(true);
@@ -28,6 +42,10 @@ const Index = () => {
   };
 
   const handlePurchase = () => {
+    // Track initiatecheckout event
+    if (typeof window.utmify === 'function') {
+      window.utmify('initiatecheckout');
+    }
     window.open('https://www.ggcheckout.com/checkout/v2/d69NaLrbZoJDFs3GeUCX', '_blank');
   };
 
